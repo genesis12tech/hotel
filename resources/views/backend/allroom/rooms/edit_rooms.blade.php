@@ -41,7 +41,9 @@
                             <h5 class="mb-4">Update Room </h5>
 
                             <h5 class="mb-4">Update Room </h5>
-    <form class="row g-3">
+
+    <form class="row g-3" action="{{ route('update.room',$editData->id) }}" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="col-md-4">
             <label for="input1" class="form-label">Room Type Name </label>
             <input type="text" name="roomtype_id" class="form-control" id="input1" value="{{ $editData['type']['name'] }}" >
@@ -75,16 +77,23 @@
         </div>
 
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label for="input1" class="form-label">Room Price  </label>
             <input type="text" name="price" class="form-control" id="input1" value="{{ $editData->price }}" >
+
+            <div class="col-md-3">
+            <label for="input2" class="form-label">Size </label>
+            <input type="text" name="size" class="form-control" id="input2"  value="{{ $editData->size }}">
+        </div>
+
+
         </div>
         <div class="col-md-4">
             <label for="input2" class="form-label">Discount ( % )</label>
             <input type="text" name="discount" class="form-control" id="input2"  value="{{ $editData->discount }}">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label for="input2" class="form-label">Room Capacity </label>
             <input type="text" name="room_capacity" class="form-control" id="input2" value="{{ $editData->room_capacity }}">
         </div>
@@ -124,8 +133,6 @@
 
 
 
-
-
         <div class="row mt-2">
             <div class="col-md-12 mb-3">
                @forelse ($basic_facility as $item)
@@ -133,7 +140,9 @@
                   <div class="row add_item">
                      <div class="col-md-8">
                         <label for="facility_name" class="form-label"> Room Facilities </label>
-                        <select name="facility_name[]" id="facility_name" class="form-control">
+
+                         <select name="facility_name[]" id="basic_facility_name" class="form-control">
+
                               <option value="">Select Facility</option>
                               <option value="Complimentary Breakfast" {{$item->facility_name == 'Complimentary Breakfast'?'selected':''}}>Complimentary Breakfast</option>
              <option value="32/42 inch LED TV"  {{$item->facility_name == 'Complimentary Breakfast'?'selected':''}}> 32/42 inch LED TV</option>
