@@ -64,13 +64,23 @@
 
             <input type="file" name="image" class="form-control" id="image"  >
 
-            <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/roomimg/'.$editData->image) : url('no_image.jpg') }}" alt="Admin" class="bg-primary" width="60">
+            <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/roomimg/'.$editData->image) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary" width="70" height="50">
 
         </div>
         <div class="col-md-6">
             <label for="input4" class="form-label">Gallery Image </label>
 
             <input type="file" name="multi_img[]" class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png" >
+
+            @foreach ($multiimgs as $item)
+
+            <img src="{{ (!empty($item->multi_img)) ? url('upload/roomimg/multi_img/'.$item->multi_img) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary" width="60">
+
+              <a href=" {{route('multi.image.delete',$item->id)}} "><i class="lni lni-close"></i> </a>
+
+            @endforeach
+
+
 
             <div class="row" id="preview_img"></div>
 
@@ -102,8 +112,8 @@
             <label for="input7" class="form-label">Room View </label>
             <select name="view" id="input7" class="form-select">
                 <option selected="">Choose...</option>
-                <option value="Sea View">Sea View </option>
-                <option value="Hill View">Hill View </option>
+                <option value="Sea View" {{ $editData->view == 'Sea View'?'selected':''}}>Sea View </option>
+                <option value="Hill View" {{ $editData->view == 'Hill View'?'selected':''}}>Hill View </option>
 
             </select>
         </div>
@@ -112,9 +122,9 @@
             <label for="input7" class="form-label">Bed Style</label>
             <select name="bed_style" id="input7" class="form-select">
                 <option selected="">Choose...</option>
-                <option value="Queen Bed"> Queen Bed </option>
-                <option value="Twin Bed">Twin Bed </option>
-                <option value="King Bed">King Bed </option>
+                <option value="Queen Bed" {{ $editData->bed_style == 'Queen Bed'?'selected':''}}> Queen Bed </option>
+                <option value="Twin Bed" {{ $editData->bed_style == 'Twin Bed'?'selected':''}}>Twin Bed </option>
+                <option value="King Bed" {{ $editData->bed_style == 'King Bed'?'selected':''}}>King Bed </option>
             </select>
         </div>
 
@@ -128,7 +138,7 @@
 
         <div class="col-md-12">
             <label for="input11" class="form-label"> Description </label>
-            <textarea name="description" class="form-control" id="myeditorinstance" >{!! $editData->short_desc !!}</textarea>
+            <textarea name="description" class="form-control" id="myeditorinstance" rows="10" cols="80" >{!! $editData->description !!}</textarea>
         </div>
 
 
@@ -172,8 +182,8 @@
                      </div>
                      <div class="col-md-4">
                         <div class="form-group" style="padding-top: 30px;">
-                              <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></a>
-                              <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i></span>
+                              <a class="btn btn-success addeventmore"><i class="lni lni-circle-plus"></i></a>
+                              <span class="btn btn-danger btn-sm removeeventmore"><i class="lni lni-circle-minus"></i></span>
                         </div>
                      </div>
                   </div>
@@ -321,6 +331,11 @@
        </div>
     </div>
  </div>
+
+
+
+
+
 
  <script type="text/javascript">
     $(document).ready(function(){

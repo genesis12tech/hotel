@@ -59,6 +59,34 @@
 	</script>
 <!--datatable JS-->
 
+
+
+<script src="{{asset('backend/js/bootstrap3-wysihtml5.all.js')}}"></script>
+
+
+
+
+<script>
+
+	//Add text editor
+    $(function () {
+    "use strict";
+
+    // Replace the <textarea id="editor1"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace('editor1')
+	//bootstrap WYSIHTML5 - text editor
+	$('.textarea').wysihtml5();
+
+  });
+
+
+</script>
+
+
+
+
+
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
    tinymce.init({
