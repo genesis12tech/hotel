@@ -51,7 +51,8 @@
                         <td>
 
 
-<img src=" {{ (!empty($item->rooms->image)) ? url('upload/rooming/'.$item->rooms->image) : url('no_image.jpg') }}" alt="" style="width: 50px; height:30px;" >
+
+ <img src="{{ (!empty($item->room->image)) ? url('upload/roomimg/'.$item->room->image) : url('upload/no_image.jpg') }}" alt="" style="width: 50px; height:30px;" >
 
 
                         </td>
