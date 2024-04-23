@@ -20,11 +20,39 @@
 		new PerfectScrollbar(".app-container")
 	</script>
 
+
+	<script src="{{asset('backend/assets/js/bootstrap3-wysihtml5.all.js')}}"></script>
+	<script src="{{asset('backend/assets/js/editor.js')}}"></script>
+	<script src="{{asset('backend/assets/js/ckeditor.js')}}"></script>
+
+
+
+
+
+
+
+
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{asset('backend/assets/js/code.js')}}"></script>
 <script src="{{asset('backend/assets/js/validate.min.js')}}"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+ <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
+
+
+
+
 
 <script>
  @if(Session::has('message'))
@@ -61,27 +89,10 @@
 
 
 
-<script src="{{asset('backend/js/bootstrap3-wysihtml5.all.js')}}"></script>
 
 
 
 
-<script>
-
-	//Add text editor
-    $(function () {
-    "use strict";
-
-    // Replace the <textarea id="editor1"> with a CKEditor
-	// instance, using default configuration.
-	CKEDITOR.replace('editor1')
-	//bootstrap WYSIHTML5 - text editor
-	$('.textarea').wysihtml5();
-
-  });
-
-
-</script>
 
 
 

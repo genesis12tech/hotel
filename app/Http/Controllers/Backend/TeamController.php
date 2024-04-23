@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookingArea;
+use App\Models\BookArea;
 use App\Models\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -144,7 +144,7 @@ class TeamController extends Controller {
 
 	public function BookArea() {
 
-		$book = BookingArea::find(1);
+		$book = BookArea::find(1);
 		return view('backend.bookarea.book_area', compact('book'));
 	} // End Method
 
@@ -168,7 +168,7 @@ class TeamController extends Controller {
 
 			$save_url = 'upload/bookarea/' . $name_gen;
 
-			BookingArea::findOrFail($book_id)->update([
+			BookArea::findOrFail($book_id)->update([
 
 				'short_title' => $request->short_title,
 				'main_title' => $request->main_title,
@@ -186,7 +186,7 @@ class TeamController extends Controller {
 
 		} else {
 
-			BookingArea::findOrFail($book_id)->update([
+			BookArea::findOrFail($book_id)->update([
 
 				'short_title' => $request->short_title,
 				'main_title' => $request->main_title,
