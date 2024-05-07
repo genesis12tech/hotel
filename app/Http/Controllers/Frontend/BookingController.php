@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\Room;
-use App\Models\RoomBookedDate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Models\BookArea;
+use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
+use App\Models\Room;
+use App\Models\MultiImage;
+use App\Models\Facility;
+use App\Models\RoomBookedDate;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Stripe;
 
 class BookingController extends Controller {
 	public function Checkout() {
@@ -70,6 +75,7 @@ class BookingController extends Controller {
 	} // End Method
 
 	public function CheckoutStore(Request $request) {
+		
 
 		$this->validate($request, [
 			'name' => 'required',
@@ -92,6 +98,34 @@ class BookingController extends Controller {
 		$discount = ($room->discount / 100) * $subtotal;
 		$total_price = $subtotal - $discount;
 		$code = rand(000000000, 999999999);
+
+		if ($request->payment_method == 'Stripe') {
+			Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+			$s_pay = Stripe\Charge::create([
+				"amount" => $total_price * 100,
+				"currency" => "usd",
+				"source" => $request->stripeToken,
+				"description" => "Payment For Booking. Booking No " . $code,
+
+			]);
+
+			if ($s_pay['status'] == 'succeeded') {
+				$payment_status = 1;
+				$transation_id = $s_pay->id;
+			} else {
+
+				$notification = array(
+					'message' => 'Sorry Payment Fail',
+					'alert-type' => 'error',
+				);
+				return redirect('/')->with($notification);
+
+			}
+
+		} else {
+			$payment_status = 0;
+			$transation_id = '';
+		}
 
 		$data = new Booking();
 		$data->rooms_id = $room->id;
