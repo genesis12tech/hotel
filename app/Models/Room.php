@@ -16,4 +16,11 @@ class Room extends Model {
 	public function room_numbers() {
 		return $this->hasMany(RoomNumber::class, 'rooms_id')->where('status', 'Active');
 	}
+
+
+	
+
+
+
+
 }
