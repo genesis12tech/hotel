@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Stripe;
 use App\Models\BookingRoomList;
 use App\Models\RoomNumber;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingController extends Controller {
 	public function Checkout() {
@@ -199,6 +200,21 @@ class BookingController extends Controller {
     }// End Method 
 
 
+
+	public function DeleteBooking($id){
+
+		$DeleteData = Booking::with('room')->find($id);
+        $DeleteData->delete();
+
+        $notification = array(
+            'message' => 'Booking Deleted Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->back()->with($notification); 
+
+     }// End Method 
+
+
 	public function UpdateBookingStatus(Request $request, $id){
 
         $booking = Booking::find($id);
@@ -256,8 +272,6 @@ class BookingController extends Controller {
         return redirect()->back()->with($notification);   
 
      }  // End Method 
-
-
 
 
 	 public function AssignRoom($booking_id){
@@ -323,6 +337,22 @@ class BookingController extends Controller {
         return redirect()->back()->with($notification); 
 
      }// End Method 
+
+
+
+	public function DownloadInvoice($id){
+
+        $editData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice',compact('editData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
+     }// End Method
+
+
+
 
 
 
