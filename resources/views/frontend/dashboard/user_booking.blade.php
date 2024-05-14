@@ -78,10 +78,6 @@
                 
                             </td>
 
-                            
-
-                           
-
                               <td><a href="{{ route('user.invoice',$item->id) }}"><span class="btn btn-sm  btn-info position-relative me-lg-5 "><i class="bx bx-cloud-download align-middle"></i>Invoice</span></a></td>
                               </tr>
                               @endforeach
