@@ -114,7 +114,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 		Route::get('/edit_booking/{id}', 'EditBooking')->name('edit_booking');
 		Route::get('/delete_booking/{id}', 'DeleteBooking')->name('delete_booking');
 		Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
-	
+
+
+
+		 /// Admin Room List All Route 
+		 Route::controller(RoomListController::class)->group(function(){
+
+			Route::get('/view/room/list', 'ViewRoomList')->name('view.room.list');
+			Route::get('/add/room/list', 'AddRoomList')->name('add.room.list'); 
+			Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist'); 
+		
+		
+		});
+
+
+
 	
 	});
 
@@ -158,16 +172,17 @@ Route::middleware(['auth'])->group(function () {
 			 Route::get('/assign_room/store/{booking_id}/{room_number_id}', 'AssignRoomStore')->name('assign_room_store');
 			 Route::get('/assign_room_delete/{id}', 'AssignRoomDelete')->name('assign_room_delete');
 
+
+
+			 	 ////////// User Booking Route
+
+		 Route::get('/user/booking', 'UserBooking')->name('user.booking');
+		 Route::get('/user/invoice/{id}', 'UserInvoice')->name('user.invoice');
+
+
+
 	});
 
-	 /// Admin Room List All Route 
-	 Route::controller(RoomListController::class)->group(function(){
-
-		Route::get('/view/room/list', 'ViewRoomList')->name('view.room.list');
-		Route::get('/add/room/list', 'AddRoomList')->name('add.room.list'); 
-		Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist'); 
 	
-	
-	});
 
 }); // End Group Auth Middleware
