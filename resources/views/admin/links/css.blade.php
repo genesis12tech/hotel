@@ -28,6 +28,8 @@
 
 	 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.0/classic/ckeditor.js"></script>
 
+	 <script src="https://cdn.tiny.cloud/1/z1p59idyoqocnaq00lj550vg356dyi3blrccun3bizmiwlup/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
 
 	 <!-- dataTables CSS -->
    <link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />

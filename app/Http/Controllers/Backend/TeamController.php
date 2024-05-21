@@ -29,15 +29,15 @@ class TeamController extends Controller {
 
 			$image = $request->file('image');
 
-			$name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+			$name_gen = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
 
 			$image = $manager->read($image);
 
 			$img = $image->resize(550, 670);
 
-			$img->toJpeg(80)->save(base_path('public/upload/team/' . $name_gen));
+			$img->toJpeg(80)->save(base_path('public/upload/team/'.$name_gen));
 
-			$save_url = 'upload/team/' . $name_gen;
+			$save_url = 'upload/team/'.$name_gen;
 
 		}
 
