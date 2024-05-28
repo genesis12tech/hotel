@@ -27,6 +27,7 @@
                         </h3>
                         <p>{{ $item->short_descp }}</p>
                         <a href="{{ url('blog/details/'.$item->post_slug) }}" class="read-btn">
+                            
                             Read More
                         </a>
                     </div>

@@ -59,7 +59,7 @@
 
                     <div class="col-md-12">
                         <label for="input11" class="form-label">Post Description</label>
-                        <textarea name="long_descp" class="form-control" id="myeditorinstance" >{!! $post->long_descp !!}</textarea>
+                        <textarea name="long_descp" class="form-control" id="editor" >{!! $post->long_descp !!}</textarea>
                     </div>
 
                     <div class="col-md-6">
