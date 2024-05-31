@@ -1,11 +1,13 @@
-
+@php
+   $setting =  App\Models\SiteSetting::find(1);
+@endphp
 
 <div class="navbar-area">
             <!-- Menu For Mobile Device -->
             <div class="mobile-nav">
                 <a href="{{url('/') }}" class="logo">
-                    <img src="{{asset('frontend/assets/img/logos/logo_1.png' )}}" class="logo-one" alt="Logo">
-                    <img src="{{asset('frontend/assets/img/logos/footer-logo.png')}}" class="logo-two" alt="Logo">
+                    <img src="{{asset($setting->logo)}}" class="logo-one" alt="Logo">
+                    <img src="{{asset($setting->logo)}}" class="logo-two" alt="Logo">
                 </a>
             </div>
 
@@ -14,8 +16,8 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light ">
                         <a class="navbar-brand" href="{{url('/') }}">
-                            <img src="{{asset('frontend/assets/img/logos/logo_1.png' )}}" class="logo-one" alt="Logo">
-                            <img src="{{asset('frontend/assets/img/logos/footer-logo.png')}}" class="logo-two" alt="Logo">
+                            <img src="{{asset($setting->logo )}}" class="logo-one" alt="Logo">
+                            <img src="{{asset($setting->logo)}}" class="logo-two" alt="Logo">
                         </a>
 
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
