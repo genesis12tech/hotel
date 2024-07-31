@@ -258,26 +258,26 @@ class RoleController extends Controller
     {
 
 
-        $role = Role::find($id);
-        $permissions = $request->permission;
-
-        if (!empty($permissions)) {
-            // Fetch permission names by IDs
-            $permissionNames = Permission::whereIn('id', $permissions)->pluck('name')->toArray();
-            $role->syncPermissions($permissionNames);
-        } else {
-            // If no permissions are provided, remove all permissions from the role
-            $role->syncPermissions([]);
-        }
-
-//
 //        $role = Role::find($id);
 //        $permissions = $request->permission;
 //
 //        if (!empty($permissions)) {
-//
-//            $role->syncPermissions($permissions);
+//            // Fetch permission names by IDs
+//            $permissionNames = Permission::whereIn('id', $permissions)->pluck('name')->toArray();
+//            $role->syncPermissions($permissionNames);
+//        } else {
+//            // If no permissions are provided, remove all permissions from the role
+//            $role->syncPermissions([]);
 //        }
+
+//
+        $role = Role::find($id);
+        $permissions = $request->permission;
+
+        if (!empty($permissions)) {
+
+            $role->syncPermissions($permissions);
+        }
 
         $notification = array(
             'message' => 'Assign Permission Updated Successfully',

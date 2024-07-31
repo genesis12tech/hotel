@@ -255,5 +255,8 @@
         </li>
 
 
-        <!--end navigation-->
+    </ul>
+
 </div>
+
+<!--end navigation-->
